@@ -1,4 +1,3 @@
-/*
 {
   "status": "success",
   "data": {
@@ -7,4 +6,4 @@
     "age": "predicate:age"
   },
   "message": "Successfully! Record has been updated."
-}*/
+}
