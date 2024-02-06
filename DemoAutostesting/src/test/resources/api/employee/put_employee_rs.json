@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "data": {
+    "name": "${employee.name}",
+    "salary": "predicate:salary",
+    "age": "predicate:age"
+  },
+  "message": "Successfully! Record has been updated."
+}

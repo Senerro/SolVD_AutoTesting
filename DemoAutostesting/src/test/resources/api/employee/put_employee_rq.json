@@ -1,0 +1,5 @@
+{
+  "name":"${employee.name}",
+  "salary":"predicate:salary",
+  "age":"predicate:age"
+}
