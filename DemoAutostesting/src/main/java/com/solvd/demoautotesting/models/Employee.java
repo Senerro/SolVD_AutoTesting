@@ -1,3 +1,4 @@
+/*
 package com.solvd.demoautotesting.models;
 import java.util.Objects;
 
@@ -48,4 +49,4 @@ public class Employee {
     public int hashCode() {
         return Objects.hash(id, name, salary, age, image);
     }
-}
+}*/

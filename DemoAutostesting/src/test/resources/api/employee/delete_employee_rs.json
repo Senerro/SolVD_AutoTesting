@@ -1,5 +1,6 @@
+/*
 {
   "status": "success",
   "data": "${employee.id}",
   "message": "Successfully! Record has been deleted"
-}
+}*/

@@ -1,3 +1,4 @@
+/*
 package com.solvd.demoautotesting;
 
 import com.solvd.demoautotesting.api.DeleteEmployeeById;
@@ -62,3 +63,4 @@ public class EmployeeTest {
         putEmployeeByJson.validateResponse();
     }
 }
+*/

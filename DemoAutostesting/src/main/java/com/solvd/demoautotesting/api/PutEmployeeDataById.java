@@ -1,3 +1,4 @@
+/*
 package com.solvd.demoautotesting.api;
 
 import com.zebrunner.carina.api.AbstractApiMethodV2;
@@ -16,3 +17,4 @@ public class PutEmployeeDataById extends AbstractApiMethodV2 {
         ignorePropertiesProcessor(NotStringValuesProcessor.class);
     }
 }
+*/
