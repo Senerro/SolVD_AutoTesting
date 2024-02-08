@@ -9,6 +9,7 @@ target/
 .idea/compiler.xml
 .idea/libraries/
 reports/
+.src/main/resources/_testdata.properties
 *.iws
 *.iml
 *.ipr
