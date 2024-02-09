@@ -1,0 +1,43 @@
+[2024-02-06 12:46:14] [1] [INFO] [TestNG] Running:
+  C:\Users\Павел\AppData\Local\JetBrains\IdeaIC2023.2\temp-testng-customsuite.xml
+
+[2024-02-06 12:46:17] [1] [INFO] Request method:	GET
+Request URI:	https://dummy.restapiexample.com/api/v1/employee/1
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Multiparts:		<none>
+Cookies:		<none>
+Headers:		Accept=*/*
+				Content-Type=application/json; charset=UTF-8
+Body:			<none>
+HTTP/1.1 200 OK
+Date: Tue, 06 Feb 2024 12:46:17 GMT
+Server: nginx/1.21.6
+Content-Type: application/json
+Content-Length: 152
+Cache-Control: no-cache, private
+X-RateLimit-Limit: 60
+X-RateLimit-Remaining: 58
+Cache-Control: max-age=86400
+Expires: Wed, 07 Feb 2024 12:46:17 GMT
+Vary: Accept-Encoding
+Content-Encoding: gzip
+X-Endurance-Cache-Level: 2
+X-nginx-cache: WordPress
+X-Server-Cache: true
+X-Proxy-Cache: MISS
+
+{
+    "status": "success",
+    "data": {
+        "id": 1,
+        "employee_name": "Tiger Nixon",
+        "employee_salary": 320800,
+        "employee_age": 61,
+        "profile_image": ""
+    },
+    "message": "Successfully! Record has been fetched."
+}
+
