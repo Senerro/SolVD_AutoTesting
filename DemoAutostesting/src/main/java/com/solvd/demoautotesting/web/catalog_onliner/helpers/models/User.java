@@ -13,6 +13,14 @@ public class User {
         this.pass = pass;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
     public static User provideUser(UserValidationDataType userType, isValidEnum isValid) {
         return isValid.equals(isValidEnum.VALID) ? getValidUserByDataType(userType) : getInvalidUserByType();
     }

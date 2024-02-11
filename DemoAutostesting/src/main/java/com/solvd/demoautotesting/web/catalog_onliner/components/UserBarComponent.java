@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class UserBarComponent extends AbstractUIObject {
+    @FindBy(xpath = ".//div[@class='b-top-profile__list']")
+    private ProfileComponent profileComponent;
     @FindBy(xpath = ".//div[contains(@class, '--text')]")
     private ExtendedWebElement logByMyself;
     @FindBy(xpath = ".//div[contains(@class, '--gg')]")
@@ -16,8 +18,8 @@ public class UserBarComponent extends AbstractUIObject {
 
     private ExtendedWebElement logByFacebook;
     @FindBy(xpath = ".//div[contains(@class, '--vk')]")
-
     private ExtendedWebElement logByVK;
+
     public UserBarComponent(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
@@ -36,5 +38,9 @@ public class UserBarComponent extends AbstractUIObject {
 
     public ExtendedWebElement getLogByVK() {
         return logByVK;
+    }
+
+    public ProfileComponent getProfileComponent() {
+        return profileComponent;
     }
 }

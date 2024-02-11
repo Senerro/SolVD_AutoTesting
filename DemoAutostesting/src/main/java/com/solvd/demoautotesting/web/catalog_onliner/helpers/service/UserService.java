@@ -6,7 +6,6 @@ import com.solvd.demoautotesting.web.catalog_onliner.helpers.enums.isValidEnum;
 
 public class UserService {
     public User createUser(UserValidationDataType type, isValidEnum is){
-        var a =  User.provideUser(type, is);
-        return a;
+        return User.provideUser(type, is);
     }
 }

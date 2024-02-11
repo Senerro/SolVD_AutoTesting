@@ -8,4 +8,5 @@ public class SearchLineComponent extends AbstractUIObject {
     public SearchLineComponent(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
+
 }
