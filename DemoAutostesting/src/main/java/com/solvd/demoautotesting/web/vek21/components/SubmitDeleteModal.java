@@ -14,7 +14,7 @@ public class SubmitDeleteModal extends AbstractUIObject {
         super(driver, searchContext);
     }
 
-    public void confirm(){
+    public void confirm() {
         deleteButton.click();
     }
 

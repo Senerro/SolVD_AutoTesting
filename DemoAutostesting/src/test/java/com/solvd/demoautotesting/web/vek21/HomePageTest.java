@@ -53,7 +53,6 @@ public class HomePageTest extends AbstractTest {
         Assert.assertEquals(purgedProductList.size(), fullProductList.size() - 1, "Product from cart wasn't deleted or delete more than one selected product");
         Assert.assertTrue(fullProductList.contains(deletedProduct), "deleted product wasn't put into cart");
         Assert.assertFalse(purgedProductList.contains(deletedProduct), "product wasn't deleted from cart");
-
         Assert.assertTrue(productCardTotalCostComparison(purgedProductList, cartPage.getTotalPrice()));
     }
 
@@ -79,9 +78,5 @@ public class HomePageTest extends AbstractTest {
             totalCost = totalCost.add(product.getCost());
 
         return totalCost.equals(cartTotal);
-    }
-
-    private void checkDeletedProductNonexistence(List<Product> products, Product deletedProduct) {
-
     }
 }

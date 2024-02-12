@@ -17,7 +17,6 @@ import java.math.BigDecimal;
 public class HomePage extends AbstractPage {
     @FindBy(xpath = "//body//div[contains(@class,'AgreementCookie_buttons')]")
     private CookieComponent cookieComponent;
-    //div[@aria-hidden='false']//div[@data-observable='false']//
     @FindBy(xpath = "//div[@aria-hidden='false']//div[@data-observable='false']//div[contains(@class,'EntitiesList_items')]")
     private SaleProductsComponent saleProductsComponent;
     @FindBy(xpath = "//div[contains(@class,\"headerCart\")]")
@@ -55,7 +54,7 @@ public class HomePage extends AbstractPage {
 
     public CartPage clickOnCartButton() {
         curtButton.click();
-        if(basketElement.isElementPresent(5))
+        if (basketElement.isElementPresent(5))
             return new CartPage(driver);
 
         throw new RuntimeException("Page wasn't loaded");
@@ -70,14 +69,14 @@ public class HomePage extends AbstractPage {
         saleProductsComponent.putInCartByIndex(index);
     }
 
-    @Override
-    public void open() {
-        openURL(Configuration.getRequired("vek21_home_url"));
-    }
-
     public void scrollToSaleProducts() {
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         WebElement element = driver.findElement(By.xpath("//div[@class='react-swipeable-view-container']"));
         js.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    @Override
+    public void open() {
+        openURL(Configuration.getRequired("vek21_home_url"));
     }
 }

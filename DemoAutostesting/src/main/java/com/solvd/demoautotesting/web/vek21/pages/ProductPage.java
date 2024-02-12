@@ -23,10 +23,9 @@ public class ProductPage extends AbstractPage {
         super(driver);
     }
 
-    public Product getProduct(){
-
+    public Product getProduct() {
         String name = productNameByIndex.getText().toLowerCase();
-        String stringPrice =productPriceByIndex.getAttribute("data-price");
+        String stringPrice = productPriceByIndex.getAttribute("data-price");
         BigDecimal price = BigDecimal.valueOf(Double.parseDouble(stringPrice));
         return new Product(name, price);
     }

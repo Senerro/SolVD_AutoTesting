@@ -37,14 +37,14 @@ public class CartPage extends AbstractPage {
         List<String> costs = cartProductCosts.stream().map(ExtendedWebElement::getText).toList();
         List<String> typoCosts = new ArrayList<>();
         for (String cost : costs)
-            typoCosts.add(StringUtils.split(cost.replace(",", ".").replace(" ",""), "р")[0]);
+            typoCosts.add(StringUtils.split(cost.replace(",", ".").replace(" ", ""), "р")[0]);
 
         return Product.getProductList(names, typoCosts);
     }
 
     public BigDecimal getTotalPrice() {
         String stringPrice = totalPrice.getText();
-        var finalStringPrice = StringUtils.split(stringPrice.replace(",", ".").replace(" ",""), "р")[0];
+        var finalStringPrice = StringUtils.split(stringPrice.replace(",", ".").replace(" ", ""), "р")[0];
         return BigDecimal.valueOf(Double.parseDouble(finalStringPrice));
     }
 
@@ -61,8 +61,8 @@ public class CartPage extends AbstractPage {
 
     public Product getProductFromCartByIndex(int index) {
         List<Product> productList = getProductsFromCart();
-        if(productList.size() < index)
+        if (productList.size() < index)
             throw new IllegalArgumentException("sent index of product from cart was bigger than size of product cart list.");
-        return productList.get(index-1);
+        return productList.get(index - 1);
     }
 }

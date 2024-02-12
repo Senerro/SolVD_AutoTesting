@@ -26,7 +26,7 @@ public class SaleProductsComponent extends AbstractUIObject {
         return productPriceByIndex;
     }
 
-    public void putInCartByIndex(int index){
+    public void putInCartByIndex(int index) {
         putInCartButton.format(index).click();
     }
 }
