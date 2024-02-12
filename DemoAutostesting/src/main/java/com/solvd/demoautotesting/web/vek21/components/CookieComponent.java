@@ -18,4 +18,7 @@ public class CookieComponent extends AbstractUIObject {
         submitCookieButton.click();
     }
 
+    public ExtendedWebElement getSubmitCookieButton() {
+        return submitCookieButton;
+    }
 }

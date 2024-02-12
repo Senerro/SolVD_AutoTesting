@@ -11,9 +11,8 @@ public class SaleProductsComponent extends AbstractUIObject {
     private ExtendedWebElement productNameByIndex;
     @FindBy(xpath = "./div[%d]//div[contains(@class,'priceInfo')]//p")
     private ExtendedWebElement productPriceByIndex;
-
-    /*@FindBy(xpath = "./div[%d]//div[contains(@class,'priceInfo')]//p/a")
-    private ExtendedWebElement*/
+    @FindBy(xpath = "./div[%d]//div[contains(@class,'actions')]/button")
+    private ExtendedWebElement putInCartButton;
 
     public SaleProductsComponent(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
@@ -25,5 +24,9 @@ public class SaleProductsComponent extends AbstractUIObject {
 
     public ExtendedWebElement getProductPriceByIndex() {
         return productPriceByIndex;
+    }
+
+    public void putInCartByIndex(int index){
+        putInCartButton.format(index).click();
     }
 }

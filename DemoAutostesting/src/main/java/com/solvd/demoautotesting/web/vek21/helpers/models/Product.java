@@ -6,6 +6,8 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Product {
@@ -23,6 +25,13 @@ public class Product {
 
     public BigDecimal getCost() {
         return cost;
+    }
+
+    public static List<Product> getProductList(List<String> names, List<String> costs){
+        List<Product> products = new ArrayList<>();
+        for (int i = 0; i < names.size(); i++)
+            products.add(new Product(names.get(i), BigDecimal.valueOf(Double.parseDouble(costs.get(i)))));
+        return products;
     }
 
     @Override
