@@ -39,6 +39,14 @@ public class HomePageTest extends AbstractTest {
     }
 
     @Test
+    public void verifyScrolling() {
+        HomePage homePage = getHomePage();
+        Assert.assertTrue(homePage.getSaleProductsComponent().getProductNameByIndex(2).isElementNotPresent(2));
+        homePage.scrollToSaleProducts();
+        Assert.assertTrue(homePage.getSaleProductsComponent().getProductNameByIndex(2).isElementPresent(2));
+    }
+
+    @Test
     public void verifyPurgeProductsFromCart() {
         HomePage homePage = getHomePage();
         homePage.scrollToSaleProducts();

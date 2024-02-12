@@ -18,12 +18,12 @@ public class SaleProductsComponent extends AbstractUIObject {
         super(driver, searchContext);
     }
 
-    public ExtendedWebElement getProductNameByIndex() {
-        return productNameByIndex;
+    public ExtendedWebElement getProductNameByIndex(int index) {
+        return productNameByIndex.format(index);
     }
 
-    public ExtendedWebElement getProductPriceByIndex() {
-        return productPriceByIndex;
+    public ExtendedWebElement getProductPriceByIndex(int index) {
+        return productPriceByIndex.format(index);
     }
 
     public void putInCartByIndex(int index) {

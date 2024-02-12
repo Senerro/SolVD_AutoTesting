@@ -40,15 +40,19 @@ public class HomePage extends AbstractPage {
     }
 
     public Product getProductByIndex(int index) {
-        String name = saleProductsComponent.getProductNameByIndex().format(index).getText().toLowerCase();
-        String stringPrice = saleProductsComponent.getProductPriceByIndex().format(index).getText().replace(",", ".").replace(" ", "").replace("р.", "");
+        String name = saleProductsComponent.getProductNameByIndex(index).getText().toLowerCase();
+        String stringPrice = saleProductsComponent.getProductPriceByIndex(index).getText().replace(",", ".").replace(" ", "").replace("р.", "");
         BigDecimal price = BigDecimal.valueOf(Double.parseDouble(stringPrice));
 
         return new Product(name, price);
     }
 
+    public SaleProductsComponent getSaleProductsComponent() {
+        return saleProductsComponent;
+    }
+
     public ProductPage clickOnProduct(int index) {
-        saleProductsComponent.getProductNameByIndex().format(index).click();
+        saleProductsComponent.getProductNameByIndex(index).click();
         return new ProductPage(driver);
     }
 
