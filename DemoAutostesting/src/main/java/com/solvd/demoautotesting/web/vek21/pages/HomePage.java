@@ -19,6 +19,14 @@ public class HomePage extends AbstractPage {
     private SaleProductsComponent saleProductsComponent;
     @FindBy(xpath = "//div[contains(@class,\"headerCart\")]")
     private ExtendedWebElement curtButton;
+    @FindBy(xpath = "//div[@class='react-swipeable-view-container']")
+    private ExtendedWebElement productContainer;
+    @FindBy(xpath = "//div[contains(@data-testid,'basket-tab')]")
+    private ExtendedWebElement element;
+
+    public ExtendedWebElement getProductContainer() {
+        return productContainer;
+    }
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -44,7 +52,10 @@ public class HomePage extends AbstractPage {
 
     public CartPage clickOnCartButton() {
         curtButton.click();
-        return new CartPage(driver);
+        if(element.isElementPresent(5))
+            return new CartPage(driver);
+
+        throw new RuntimeException("Page wasn't loaded");
     }
 
     public Product putProductInCartByIndex(int index) {

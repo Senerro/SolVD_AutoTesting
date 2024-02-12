@@ -5,18 +5,20 @@ import com.solvd.demoautotesting.web.vek21.pages.CartPage;
 import com.solvd.demoautotesting.web.vek21.pages.HomePage;
 import com.solvd.demoautotesting.web.vek21.pages.ProductPage;
 import com.zebrunner.carina.core.AbstractTest;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class HomePageTest extends AbstractTest {
     @Test
-    public void verifyProductInformation(){
+    public void verifyProductInformation() {
         HomePage homePage = getHomePage();
         Product productFromStore = homePage.getProductByIndex(2);
         ProductPage productPage = homePage.clickOnProduct(2);
@@ -25,8 +27,14 @@ public class HomePageTest extends AbstractTest {
     }
 
     @Test
-    public void verifyProductsInCart(){
+    public void verifyProductsInCart() {
         HomePage homePage = getHomePage();
+        WebDriver driver = getDriver();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        WebElement element = driver.findElement(By.xpath("//div[@class='react-swipeable-view-container']"));
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
+
         List<Product> productListFromHomePage = new ArrayList<>();
         productListFromHomePage.add(homePage.putProductInCartByIndex(2));
         productListFromHomePage.add(homePage.putProductInCartByIndex(3));
@@ -34,9 +42,10 @@ public class HomePageTest extends AbstractTest {
         CartPage cartPage = homePage.clickOnCartButton();
         List<Product> productListFromCart = cartPage.getProductsFromCart();
         Assert.assertTrue(productListsComparison(productListFromHomePage, productListFromCart), "products in lists has different names or costs");
+        Assert.assertTrue(productCardTotalCostComparison(productListFromHomePage, cartPage.getTotalPrice()));
     }
 
-    private HomePage getHomePage(){
+    private HomePage getHomePage() {
         WebDriver driver = getDriver();
         HomePage page = new HomePage(driver);
         page.open();
@@ -44,11 +53,19 @@ public class HomePageTest extends AbstractTest {
         return page;
     }
 
-    private boolean productListsComparison(List<Product> first, List<Product> second){
+    private boolean productListsComparison(List<Product> first, List<Product> second) {
         Assert.assertEquals(first.size(), second.size(), "Amount of product(s) in the cart isn't equals the amount of the selected product(s)");
         for (int i = 1; i < first.size(); i++)
-            if(!first.get(i).equals(second.get(i)))
+            if (!first.get(i).equals(second.get(i)))
                 return false;
         return true;
+    }
+
+    private boolean productCardTotalCostComparison(List<Product> products, BigDecimal cartTotal) {
+        BigDecimal totalCost = BigDecimal.ZERO;
+        for (Product product : products)
+            totalCost = totalCost.add(product.getCost());
+
+        return totalCost.equals(cartTotal);
     }
 }
