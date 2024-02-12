@@ -5,10 +5,7 @@ import com.solvd.demoautotesting.web.vek21.pages.CartPage;
 import com.solvd.demoautotesting.web.vek21.pages.HomePage;
 import com.solvd.demoautotesting.web.vek21.pages.ProductPage;
 import com.zebrunner.carina.core.AbstractTest;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -29,11 +26,7 @@ public class HomePageTest extends AbstractTest {
     @Test
     public void verifyProductsInCart() {
         HomePage homePage = getHomePage();
-        WebDriver driver = getDriver();
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-
-        WebElement element = driver.findElement(By.xpath("//div[@class='react-swipeable-view-container']"));
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
+        homePage.scrollToSaleProducts();
 
         List<Product> productListFromHomePage = new ArrayList<>();
         productListFromHomePage.add(homePage.putProductInCartByIndex(2));
@@ -43,6 +36,25 @@ public class HomePageTest extends AbstractTest {
         List<Product> productListFromCart = cartPage.getProductsFromCart();
         Assert.assertTrue(productListsComparison(productListFromHomePage, productListFromCart), "products in lists has different names or costs");
         Assert.assertTrue(productCardTotalCostComparison(productListFromHomePage, cartPage.getTotalPrice()));
+    }
+
+    @Test
+    public void verifyPurgeProductsFromCart() {
+        HomePage homePage = getHomePage();
+        homePage.scrollToSaleProducts();
+        homePage.putProductInCartByIndex(2);
+        homePage.putProductInCartByIndex(3);
+
+        CartPage cartPage = homePage.clickOnCartButton();
+        List<Product> fullProductList = cartPage.getProductsFromCart();
+        Product deletedProduct = cartPage.getProductFromCartByIndex(2);
+        List<Product> purgedProductList = cartPage.getProductsFromCartAfterDeletingByIndex(2);
+
+        Assert.assertEquals(purgedProductList.size(), fullProductList.size() - 1, "Product from cart wasn't deleted or delete more than one selected product");
+        Assert.assertTrue(fullProductList.contains(deletedProduct), "deleted product wasn't put into cart");
+        Assert.assertFalse(purgedProductList.contains(deletedProduct), "product wasn't deleted from cart");
+
+        Assert.assertTrue(productCardTotalCostComparison(purgedProductList, cartPage.getTotalPrice()));
     }
 
     private HomePage getHomePage() {
@@ -67,5 +79,9 @@ public class HomePageTest extends AbstractTest {
             totalCost = totalCost.add(product.getCost());
 
         return totalCost.equals(cartTotal);
+    }
+
+    private void checkDeletedProductNonexistence(List<Product> products, Product deletedProduct) {
+
     }
 }

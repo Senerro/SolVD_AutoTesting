@@ -6,7 +6,10 @@ import com.solvd.demoautotesting.web.vek21.helpers.models.Product;
 import com.zebrunner.carina.utils.config.Configuration;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.math.BigDecimal;
@@ -15,14 +18,14 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//body//div[contains(@class,'AgreementCookie_buttons')]")
     private CookieComponent cookieComponent;
     //div[@aria-hidden='false']//div[@data-observable='false']//
-    @FindBy(xpath = "//div[contains(@class,'EntitiesList_items')]")
+    @FindBy(xpath = "//div[@aria-hidden='false']//div[@data-observable='false']//div[contains(@class,'EntitiesList_items')]")
     private SaleProductsComponent saleProductsComponent;
     @FindBy(xpath = "//div[contains(@class,\"headerCart\")]")
     private ExtendedWebElement curtButton;
     @FindBy(xpath = "//div[@class='react-swipeable-view-container']")
     private ExtendedWebElement productContainer;
     @FindBy(xpath = "//div[contains(@data-testid,'basket-tab')]")
-    private ExtendedWebElement element;
+    private ExtendedWebElement basketElement;
 
     public ExtendedWebElement getProductContainer() {
         return productContainer;
@@ -33,7 +36,7 @@ public class HomePage extends AbstractPage {
     }
 
     public void submitCookie() {
-        if (cookieComponent.getSubmitCookieButton().isElementPresent(5))
+        if (cookieComponent.getSubmitCookieButton().isElementPresent(1))
             cookieComponent.submitCookie();
     }
 
@@ -52,7 +55,7 @@ public class HomePage extends AbstractPage {
 
     public CartPage clickOnCartButton() {
         curtButton.click();
-        if(element.isElementPresent(5))
+        if(basketElement.isElementPresent(5))
             return new CartPage(driver);
 
         throw new RuntimeException("Page wasn't loaded");
@@ -70,5 +73,11 @@ public class HomePage extends AbstractPage {
     @Override
     public void open() {
         openURL(Configuration.getRequired("vek21_home_url"));
+    }
+
+    public void scrollToSaleProducts() {
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        WebElement element = driver.findElement(By.xpath("//div[@class='react-swipeable-view-container']"));
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 }

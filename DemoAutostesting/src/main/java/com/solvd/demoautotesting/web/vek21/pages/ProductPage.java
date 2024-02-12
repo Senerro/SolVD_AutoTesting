@@ -1,5 +1,6 @@
 package com.solvd.demoautotesting.web.vek21.pages;
 
+import com.solvd.demoautotesting.web.vek21.components.SubmitDeleteModal;
 import com.solvd.demoautotesting.web.vek21.helpers.models.Product;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
@@ -14,6 +15,9 @@ public class ProductPage extends AbstractPage {
 
     @FindBy(xpath = "//div[@class='item-price']//span/span")
     private ExtendedWebElement productPriceByIndex;
+
+    @FindBy(xpath = "//div[contains(@class, 'modalWrappe')]")
+    private SubmitDeleteModal submitDeleteModal;
 
     public ProductPage(WebDriver driver) {
         super(driver);
