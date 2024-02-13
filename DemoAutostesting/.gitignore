@@ -8,8 +8,7 @@ target/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
-reports/
-**/src/main/resources/
+reports
 *.iws
 *.iml
 *.ipr
