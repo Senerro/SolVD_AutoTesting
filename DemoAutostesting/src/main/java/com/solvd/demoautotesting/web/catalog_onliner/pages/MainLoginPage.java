@@ -17,6 +17,7 @@ public class MainLoginPage extends AbstractPage {
     public MainLoginPage(WebDriver driver) {
         super(driver);
     }
+
     public void typeLogin(User user){
         loginInput.type(user.getLogin());
     }
@@ -29,15 +30,15 @@ public class MainLoginPage extends AbstractPage {
         submitButton.click();
     }
 
-    public ExtendedWebElement getLoginInput() {
-        return loginInput;
+    public boolean isSubmitButtonPresent() {
+        return submitButton.isElementPresent(1);
     }
 
-    public ExtendedWebElement getPassInput() {
-        return passInput;
+    public boolean isPassInputPresent() {
+        return passInput.isElementPresent(1);
     }
 
-    public ExtendedWebElement getSubmitButton() {
-        return submitButton;
+    public boolean isLoginInputPresent() {
+        return loginInput.isElementPresent(1);
     }
 }

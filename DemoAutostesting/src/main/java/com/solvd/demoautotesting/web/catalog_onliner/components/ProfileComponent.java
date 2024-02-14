@@ -11,15 +11,24 @@ public class ProfileComponent extends AbstractUIObject {
     private ExtendedWebElement profileImage;
     @FindBy(xpath = ".//div[contains(@class,'logout')]//a")
     private ExtendedWebElement logoutButton;
+
     public ProfileComponent(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-    public ExtendedWebElement getProfileImage() {
-        return profileImage;
+    public boolean isLogoutButtonPresence() {
+        return logoutButton.isElementPresent(1);
     }
 
-    public ExtendedWebElement getLogoutButton() {
-        return logoutButton;
+    public boolean isProfileImagePresent() {
+        return profileImage.isElementPresent(1);
+    }
+
+    public void clickOnProfileImage() {
+        profileImage.click();
+    }
+
+    public void logout() {
+        logoutButton.click();
     }
 }

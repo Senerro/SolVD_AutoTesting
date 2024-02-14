@@ -24,23 +24,39 @@ public class UserBarComponent extends AbstractUIObject {
         super(driver, searchContext);
     }
 
-    public ExtendedWebElement getLogByMyself() {
-        return logByMyself;
+    public boolean isLogoutButtonPresence() {
+        return profileComponent.isLogoutButtonPresence();
     }
 
-    public ExtendedWebElement getLogByGoogle() {
-        return logByGoogle;
+    public boolean isProfileImagePresent() {
+        return profileComponent.isProfileImagePresent();
     }
 
-    public ExtendedWebElement getLogByFacebook() {
-        return logByFacebook;
+    public boolean isLogByMyselfElementPresent() {
+        return logByMyself.isElementPresent(1);
     }
 
-    public ExtendedWebElement getLogByVK() {
-        return logByVK;
+    public boolean isLogByFacebookElementPresent() {
+        return logByFacebook.isElementPresent(1);
     }
 
-    public ProfileComponent getProfileComponent() {
-        return profileComponent;
+    public boolean isLogByVKElementPresent() {
+        return logByVK.isElementPresent(1);
+    }
+
+    public boolean isLogByGoogleElementPresent() {
+        return logByGoogle.isElementPresent(1);
+    }
+
+    public void clickToLoginMyselfButton() {
+        logByMyself.click();
+    }
+
+    public void clickOnProfileImage() {
+        profileComponent.clickOnProfileImage();
+    }
+
+    public void logout() {
+        profileComponent.logout();
     }
 }

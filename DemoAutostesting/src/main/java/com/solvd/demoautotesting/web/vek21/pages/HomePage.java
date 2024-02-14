@@ -21,22 +21,15 @@ public class HomePage extends AbstractPage {
     private SaleProductsComponent saleProductsComponent;
     @FindBy(xpath = "//div[contains(@class,\"headerCart\")]")
     private ExtendedWebElement curtButton;
-    @FindBy(xpath = "//div[@class='react-swipeable-view-container']")
-    private ExtendedWebElement productContainer;
     @FindBy(xpath = "//div[contains(@data-testid,'basket-tab')]")
     private ExtendedWebElement basketElement;
-
-    public ExtendedWebElement getProductContainer() {
-        return productContainer;
-    }
 
     public HomePage(WebDriver driver) {
         super(driver);
     }
 
     public void submitCookie() {
-        if (cookieComponent.getSubmitCookieButton().isElementPresent(1))
-            cookieComponent.submitCookie();
+        cookieComponent.submitCookie();
     }
 
     public Product getProductByIndex(int index) {
@@ -45,10 +38,6 @@ public class HomePage extends AbstractPage {
         BigDecimal price = BigDecimal.valueOf(Double.parseDouble(stringPrice));
 
         return new Product(name, price);
-    }
-
-    public SaleProductsComponent getSaleProductsComponent() {
-        return saleProductsComponent;
     }
 
     public ProductPage clickOnProduct(int index) {
@@ -77,6 +66,15 @@ public class HomePage extends AbstractPage {
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         WebElement element = driver.findElement(By.xpath("//div[@class='react-swipeable-view-container']"));
         js.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+
+    public boolean isProductByIndexHidden(int index) {
+        return saleProductsComponent.isProductByIndexHidden(index);
+    }
+
+    public boolean isProductByIndexRevealed(int index) {
+        return saleProductsComponent.isProductByIndexRevealed(index);
     }
 
     @Override

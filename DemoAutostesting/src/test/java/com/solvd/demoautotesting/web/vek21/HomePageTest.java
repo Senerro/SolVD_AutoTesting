@@ -17,9 +17,12 @@ public class HomePageTest extends AbstractTest {
     @Test
     public void verifyProductInformation() {
         HomePage homePage = getHomePage();
+        homePage.scrollToSaleProducts();
+
         Product productFromStore = homePage.getProductByIndex(2);
         ProductPage productPage = homePage.clickOnProduct(2);
         Product productFromPage = productPage.getProduct();
+
         Assert.assertEquals(productFromPage, productFromStore);
     }
 
@@ -41,9 +44,11 @@ public class HomePageTest extends AbstractTest {
     @Test
     public void verifyScrolling() {
         HomePage homePage = getHomePage();
-        Assert.assertTrue(homePage.getSaleProductsComponent().getProductNameByIndex(2).isElementNotPresent(2));
+        int productIndex = 2;
+
+        Assert.assertTrue(homePage.isProductByIndexHidden(productIndex));
         homePage.scrollToSaleProducts();
-        Assert.assertTrue(homePage.getSaleProductsComponent().getProductNameByIndex(2).isElementPresent(2));
+        Assert.assertTrue(homePage.isProductByIndexRevealed(productIndex));
     }
 
     @Test

@@ -1,6 +1,5 @@
 package com.solvd.demoautotesting.web.catalog_onliner.components;
 
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
@@ -16,12 +15,39 @@ public class Header extends AbstractUIObject {
         super(driver, searchContext);
     }
 
-    public SearchLineComponent getSearchLine() {
-        return searchLine;
+    public boolean isLogoutButtonPresence() {
+        return userBarComponent.isLogoutButtonPresence();
     }
 
-    public UserBarComponent getUserBarComponent() {
-        return userBarComponent;
+    public boolean isProfileImagePresent() {
+        return userBarComponent.isProfileImagePresent();
     }
 
+    public boolean isLogByMyselfElementPresent() {
+        return userBarComponent.isLogByMyselfElementPresent();
+    }
+
+    public boolean isLogByFacebookElementPresent() {
+        return userBarComponent.isLogByFacebookElementPresent();
+    }
+
+    public boolean isLogByVKElementPresent() {
+        return userBarComponent.isLogByVKElementPresent();
+    }
+
+    public boolean isLogByGoogleElementPresent() {
+        return userBarComponent.isLogByGoogleElementPresent();
+    }
+
+    public void clickToLoginMyselfButton() {
+        userBarComponent.clickToLoginMyselfButton();
+    }
+
+    public void clickOnProfileImage() {
+        userBarComponent.clickOnProfileImage();
+    }
+
+    public void logout() {
+        userBarComponent.logout();
+    }
 }

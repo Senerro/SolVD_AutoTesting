@@ -29,4 +29,12 @@ public class SaleProductsComponent extends AbstractUIObject {
     public void putInCartByIndex(int index) {
         putInCartButton.format(index).click();
     }
+
+    public boolean isProductByIndexHidden(int index) {
+        return productNameByIndex.format(index).isElementNotPresent(1);
+    }
+
+    public boolean isProductByIndexRevealed(int index) {
+        return productNameByIndex.format(index).isElementPresent(1);
+    }
 }
