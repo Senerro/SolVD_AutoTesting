@@ -5,8 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 
 public class LaptopService {
     public static Laptop getLaptop(String name, String price){
-        String numericText = StringUtils.strip(price, "р");
-        String clearPrice = numericText.replace(" ", "");
-        return new Laptop(name, price);
+        String clearPrice = price.replaceAll("[^0-9,]", "").replace(",",".");
+        return new Laptop(name, clearPrice);
     }
 }

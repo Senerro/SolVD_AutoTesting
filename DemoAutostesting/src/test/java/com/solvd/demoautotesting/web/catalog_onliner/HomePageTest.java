@@ -14,7 +14,6 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class HomePageTest extends AbstractTest {
-
     @Test
     public void validateLoginButtonsPresence() {
         SoftAssert sa = new SoftAssert();

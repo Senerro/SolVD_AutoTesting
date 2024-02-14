@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 public class LaptopCatalogPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='fast-search'][1]")
     private SearchLineComponent searchLineComponent;
-    @FindBy(xpath = "//div[contains(@class,'offers-unit')]")
+    @FindBy(xpath = "//body")
     private LaptopComponent laptopComponent;
 
     public LaptopCatalogPage(WebDriver driver) {
@@ -25,5 +25,9 @@ public class LaptopCatalogPage extends AbstractPage {
     @Override
     public void open(){
         openURL(Configuration.getRequired("catalog_onliner_laptop_url"));
+    }
+
+    public void clickOnFavoritesButtonByProductName(String name) {
+        laptopComponent.clickFavoritesButtonByProductName(name);
     }
 }
