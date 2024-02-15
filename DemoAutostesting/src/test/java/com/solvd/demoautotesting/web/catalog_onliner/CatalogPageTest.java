@@ -1,35 +1,42 @@
 package com.solvd.demoautotesting.web.catalog_onliner;
 
+import com.solvd.demoautotesting.web.catalog_onliner.helpers.enums.ProductPageButtonsRuEnum;
 import com.solvd.demoautotesting.web.catalog_onliner.helpers.enums.UserValidationDataType;
 import com.solvd.demoautotesting.web.catalog_onliner.helpers.enums.isValidEnum;
-import com.solvd.demoautotesting.web.catalog_onliner.helpers.models.Laptop;
+import com.solvd.demoautotesting.web.catalog_onliner.helpers.models.Product;
 import com.solvd.demoautotesting.web.catalog_onliner.helpers.models.User;
 import com.solvd.demoautotesting.web.catalog_onliner.helpers.service.LoginService;
-import com.solvd.demoautotesting.web.catalog_onliner.pages.LaptopCatalogPage;
-import com.solvd.demoautotesting.web.catalog_onliner.pages.MainLoginPage;
+import com.solvd.demoautotesting.web.catalog_onliner.helpers.service.ProductService;
+import com.solvd.demoautotesting.web.catalog_onliner.pages.BookmarksPage;
+import com.solvd.demoautotesting.web.catalog_onliner.pages.HomePage;
+import com.solvd.demoautotesting.web.catalog_onliner.pages.ProductsCatalogPage;
 import com.zebrunner.carina.core.AbstractTest;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CatalogPageTest extends AbstractTest {
     @Test
-    public void verifyFavoritesButton(){
-        List<Laptop> laptopList = new ArrayList<>();
-        LaptopCatalogPage catalogPage = new LaptopCatalogPage(getDriver());
-        catalogPage.open();
+    public void verifyFavoritesButton() {
+        List<Product> productsSaleList = new ArrayList<>();
+        List<Product> productsBookmarksList = new ArrayList<>();
+        HomePage homePage = HomePage.getHomePage(getDriver());
+        LoginService.loginActions(homePage, User.provideUser(UserValidationDataType.Myself, isValidEnum.VALID));
 
-        laptopList.add(catalogPage.getLaptopByIndex(2));
-        laptopList.add(catalogPage.getLaptopByIndex(3));
-        laptopList.add(catalogPage.getLaptopByIndex(4));
-
-
-        new LoginService().login(User.provideUser(UserValidationDataType.Myself, isValidEnum.VALID), new MainLoginPage(getDriver()));
-
-            catalogPage.clickOnFavoritesButtonByProductName(laptopList.get(0).getName());
-        catalogPage.clickOnFavoritesButtonByProductName(laptopList.get(1).getName());
-
-
+        ProductsCatalogPage catalogPage = homePage.selectProductCategory(ProductPageButtonsRuEnum.NOTEBOOK);
+        productsSaleList.add(catalogPage.getProductByIndex(2));
+        productsSaleList.add(catalogPage.getProductByIndex(4));
+        /*
+        catalogPage.clickOnFavoritesButtonByProductName(productsSaleList.get(0).getName());
+        catalogPage.clickOnFavoritesButtonByProductName(productsSaleList.get(1).getName());
+        */
+        Assert.assertTrue(catalogPage.isFavoritesButtonPresent());
+        BookmarksPage bookmarksPage = catalogPage.goToBookmarksPage();
+        productsSaleList = bookmarksPage.getProductsList();
+        Assert.assertTrue(ProductService.productListsEquals(productsSaleList, productsBookmarksList));
     }
+
 }

@@ -68,6 +68,6 @@ public class HomePageTest extends AbstractTest {
         sa.assertTrue(loginPage.isSubmitButtonPresent(), "submit button isn't present");
         sa.assertAll();
 
-        new LoginService().login(user, loginPage);
+        LoginService.login(user, loginPage);
     }
 }

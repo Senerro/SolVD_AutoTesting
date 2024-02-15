@@ -1,5 +1,6 @@
 package com.solvd.demoautotesting.web.catalog_onliner.pages;
 
+import com.solvd.demoautotesting.web.catalog_onliner.components.ProductPagesAreaComponent;
 import com.solvd.demoautotesting.web.catalog_onliner.helpers.models.User;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
@@ -41,4 +42,6 @@ public class MainLoginPage extends AbstractPage {
     public boolean isLoginInputPresent() {
         return loginInput.isElementPresent(1);
     }
+
+
 }

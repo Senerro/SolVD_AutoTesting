@@ -5,6 +5,7 @@ import com.solvd.demoautotesting.web.vek21.pages.CartPage;
 import com.solvd.demoautotesting.web.vek21.pages.HomePage;
 import com.solvd.demoautotesting.web.vek21.pages.ProductPage;
 import com.zebrunner.carina.core.AbstractTest;
+import com.zebrunner.carina.utils.android.IAndroidUtils;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -13,7 +14,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomePageTest extends AbstractTest {
+public class HomePageTest extends AbstractTest implements IAndroidUtils {
     @Test
     public void verifyProductInformation() {
         HomePage homePage = getHomePage();
