@@ -29,10 +29,10 @@ public class CatalogPageTest extends AbstractTest {
         ProductsCatalogPage catalogPage = homePage.selectProductCategory(ProductPageButtonsRuEnum.NOTEBOOK);
         productsSaleList.add(catalogPage.getProductByIndex(2));
         productsSaleList.add(catalogPage.getProductByIndex(4));
-        /*
+
         catalogPage.clickOnFavoritesButtonByProductName(productsSaleList.get(0).getName());
         catalogPage.clickOnFavoritesButtonByProductName(productsSaleList.get(1).getName());
-        */
+
         Assert.assertTrue(catalogPage.isFavoritesButtonPresent());
         BookmarksPage bookmarksPage = catalogPage.goToBookmarksPage();
         productsSaleList = bookmarksPage.getProductsList();

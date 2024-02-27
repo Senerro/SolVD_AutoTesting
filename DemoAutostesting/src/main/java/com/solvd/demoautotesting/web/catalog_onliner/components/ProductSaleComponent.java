@@ -19,7 +19,9 @@ public class ProductSaleComponent extends AbstractUIObject {
     private ExtendedWebElement laptopName;
     @FindBy(xpath = ".//div[contains(@class,'offers-unit')][2]//a[contains(@class, 'link catalog-form__link_nodecor')]")
     private ExtendedWebElement price;
-    @FindBy(xpath = "//a[contains(text(), '%s')]/ancestor::div[contains(@class, 'offers-unit')]//div[contains(@class, 'handle_interactive')]")
+
+   // @FindBy(xpath = "//a[contains(text(), '%s')]/ancestor::div[contains(@class, 'offers-unit')]//div[contains(@class, 'handle_interactive')]")
+    @FindBy(xpath = "//div[contains(@class ,'catalog-form__offers-item catalog-form')][.//a[contains(text(), '%s')]]//div[@class = 'catalog-form__offers-part catalog-form__offers-part_image']/label")
     private ExtendedWebElement favoriteButtonByProductName;
 
     public ProductSaleComponent(WebDriver driver, SearchContext searchContext) {
